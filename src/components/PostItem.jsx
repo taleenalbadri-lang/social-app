@@ -111,7 +111,7 @@ export default function PostItem({ postItem, isHome }) {
             {/* first comment */}
             {firstComment && <CommentItem comment={firstComment}></CommentItem>}
 
-            {!isHome && data?.data?.data?.comments?.map(comment => <CommentItem key={comment._id} comment={comment}></CommentItem>)}
+            {!isHome && data?.data?.data?.comments?.map(comment => <CommentItem key={comment._id} comment={comment} ></CommentItem>)}
 
         </Card>
     );

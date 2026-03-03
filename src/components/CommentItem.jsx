@@ -1,9 +1,15 @@
 import React from 'react'
 import { CardHeader, Divider } from "@heroui/react";
 import { convertDate } from "../utilites/formatedate";
+import DeleteComment from './DeleteComment';
+import { useContext } from "react";
+import { authContext } from "../context/AuthContext";
+
 
 export default function CommentItem({ comment }) {
 
+
+    const { userData } = useContext(authContext)    
 
     //static src img
     const STATIC_IMAGE = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiuPA-6FxBP6qL8xYtvJ88b-bvMXSYFhFxgQ&s";
@@ -35,7 +41,7 @@ export default function CommentItem({ comment }) {
                     </div>
                 </div>
                 <div>
-                    <i className='fa-solid fa-ellipsis'></i>
+                    {userData?.id === comment?.commentCreator?._id && <DeleteComment commentId={comment?._id} postId={comment?.post}></DeleteComment>}
                 </div>
             </CardHeader>
         </>
