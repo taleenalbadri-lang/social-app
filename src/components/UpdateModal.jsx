@@ -89,12 +89,12 @@ export default function UpdateModal({ postId, post }) {
         onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['posts'] });
             queryClient.invalidateQueries({ queryKey: ['profile'] });
-            queryClient.invalidateQueries({ queryKey: ['postDetails',id] });
+            queryClient.invalidateQueries({ queryKey: ['postDetails', id] });
         }
     })
 
     if (isPending) return <Loading></Loading>
-    
+
     function handleImage(e) {
         const file = e.target.files[0];
         const url = URL.createObjectURL(file);
@@ -140,8 +140,13 @@ export default function UpdateModal({ postId, post }) {
                                     onChange={handleImage}
 
                                 />
-                                {post?.image && <img src={imageUpdatePreview || post?.image} alt="" className="W-full h-50 object-cover rounded-lg" />}
-
+                                {(imageUpdatePreview || post?.image) && (
+                                    <img
+                                        src={imageUpdatePreview || post?.image}
+                                        alt=""
+                                        className="w-full h-50 object-cover rounded-lg"
+                                    />
+                                )}
                             </ModalBody>
                             <ModalFooter>
                                 <Button color="danger" variant="flat" onPress={onClose}>
